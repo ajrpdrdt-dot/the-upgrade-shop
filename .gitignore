@@ -7,4 +7,5 @@ out
 refs
 *.log
 .DS_Store
+.env*
 .env*.local

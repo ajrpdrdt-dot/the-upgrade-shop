@@ -1,0 +1,10 @@
+node_modules
+.next
+out
+.firecrawl
+.incoming-photos
+.vercel
+refs
+*.log
+.DS_Store
+.env*.local

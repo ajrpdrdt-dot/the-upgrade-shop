@@ -19,7 +19,7 @@ export default function ContactPage() {
           </p>
           <h1>Call the shop</h1>
           <p className="lede">
-            Four fields. Name, phone, the car, and what is wrong. Or skip the form and dial {site.phone}.
+            Three fields. Name, the car, and what is wrong. Or skip the form and dial {site.phone}.
           </p>
           <p className="nap">{site.nap}</p>
           <p>

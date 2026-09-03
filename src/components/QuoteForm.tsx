@@ -30,8 +30,6 @@ export function QuoteForm({ heading = "Tell us the car" }: { heading?: string })
       <input type="hidden" name="_subject" value="TUS Shop quote request" />
       <label htmlFor="name">Name</label>
       <input id="name" name="name" autoComplete="name" required />
-      <label htmlFor="phone">Phone</label>
-      <input id="phone" name="phone" type="tel" autoComplete="tel" required />
       <label htmlFor="vehicle">Vehicle year, make, model</label>
       <input id="vehicle" name="vehicle" placeholder="2018 Porsche 911" required />
       <label htmlFor="service">Service needed</label>

@@ -25,6 +25,8 @@ export const site = {
   ctaCall: "Call the shop",
   ctaQuote: "Request a quote",
   googleAdsId: "AW-18088070718",
+  googleAdsPurchaseSendTo: "AW-18088070718/dwWvCJjK2KMcEL6ciLFD",
+  googleAdsLeadSendTo: "AW-18088070718/rb-ZCJXK2KMcEL6ciLFD",
 } as const;
 
 export const services = [

@@ -57,16 +57,22 @@ export function GoogleAdsTracking() {
       if (!payload) return;
 
       formLeadRecorded = true;
+      const transactionId = String(
+        payload.customer_id || payload.contact_id || payload.contactId || `lead-${Date.now()}`,
+      );
       record("generate_lead", {
         form_id: "93fCmkydw2MYvHb2D9Mc",
         form_name: "Tus Lead form",
         event_source: "ghl_iframe_embed",
+        transaction_id: transactionId,
       });
       window.gtag?.("event", "conversion", {
         send_to: "AW-18088070718/rb-ZCJXK2KMcEL6ciLFD",
         value: 1,
         currency: "USD",
+        transaction_id: transactionId,
       });
+      window.location.assign(`/thank-you?transaction_id=${encodeURIComponent(transactionId)}`);
     };
 
     const onClick = (event: MouseEvent) => {

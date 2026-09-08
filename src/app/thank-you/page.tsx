@@ -8,46 +8,28 @@ export const metadata: Metadata = {
   alternates: { canonical: `${site.url}/thank-you` },
 };
 
-type Props = { searchParams: Promise<{ transaction_id?: string }> };
-
-function safeTransactionId(value: string | undefined) {
-  if (!value) return "";
-  return value.replace(/[^a-zA-Z0-9_-]/g, "").slice(0, 80);
-}
-
-export default async function ThankYouPage({ searchParams }: Props) {
-  const params = await searchParams;
-  const transactionId = safeTransactionId(params.transaction_id);
-
+export default function ThankYouPage() {
   return (
     <main className="page-hero">
-      <script
-        dangerouslySetInnerHTML={{
-          __html: `gtag('event', 'conversion', {
-  'send_to': '${site.googleAdsPurchaseSendTo}',
-  'transaction_id': '${transactionId}'
-});`,
-        }}
-      ></script>
-        <div className="wrap" style={{ maxWidth: 640 }}>
-          <p className="crumbs">
-            <Link href="/">Homepage</Link> / Quote received
-          </p>
-          <h1>We have the car</h1>
-          <p className="lede">
-            The Upgrade Shop has the quote request. Peyton or the shop will follow up. If it is urgent, call now.
-          </p>
-          <p>
-            <a className="btn-call" href={site.phoneHref}>
-              {site.ctaCall}
-            </a>
-          </p>
-          <p style={{ marginTop: 28 }}>
-            <Link className="btn-ghost" href="/">
-              Back to the homepage
-            </Link>
-          </p>
-        </div>
-      </main>
+      <div className="wrap" style={{ maxWidth: 640 }}>
+        <p className="crumbs">
+          <Link href="/">Homepage</Link> / Quote received
+        </p>
+        <h1>We have the car</h1>
+        <p className="lede">
+          The Upgrade Shop has the quote request. Peyton or the shop will follow up. If it is urgent, call now.
+        </p>
+        <p>
+          <a className="btn-call" href={site.phoneHref}>
+            {site.ctaCall}
+          </a>
+        </p>
+        <p style={{ marginTop: 28 }}>
+          <Link className="btn-ghost" href="/">
+            Back to the homepage
+          </Link>
+        </p>
+      </div>
+    </main>
   );
 }

@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect } from "react";
+import { site } from "@/lib/site";
 
 declare global {
   interface Window {
@@ -67,7 +68,7 @@ export function GoogleAdsTracking() {
         transaction_id: transactionId,
       });
       window.gtag?.("event", "conversion", {
-        send_to: "AW-18088070718/rb-ZCJXK2KMcEL6ciLFD",
+        send_to: site.googleAdsLeadSendTo,
         value: 1,
         currency: "USD",
         transaction_id: transactionId,

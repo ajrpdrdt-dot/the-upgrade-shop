@@ -48,20 +48,19 @@ export const viewport: Viewport = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en" className={`${outfit.variable} ${ibm.variable}`}>
-      <body>
-        <script async src={`https://www.googletagmanager.com/gtag/js?id=${site.googleAdsId}`}></script>
+      <head>
+        <script async src="https://www.googletagmanager.com/gtag/js?id=AW-18088070718"></script>
         <script
           dangerouslySetInnerHTML={{
-            __html: `
-              window.dataLayer = window.dataLayer || [];
-              function gtag(){dataLayer.push(arguments);}
-              window.gtag = window.gtag || gtag;
-              gtag('js', new Date());
-              gtag('config', '${site.googleAdsId}');
-              gtag('config', 'G-QYPFRDJGZ6');
-            `,
+            __html: `window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'AW-18088070718');
+gtag('config', 'G-QYPFRDJGZ6');`,
           }}
         ></script>
+      </head>
+      <body>
         <Header />
         {children}
         <Footer />

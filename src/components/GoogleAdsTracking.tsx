@@ -62,6 +62,11 @@ export function GoogleAdsTracking() {
         form_name: "Tus Lead form",
         event_source: "ghl_iframe_embed",
       });
+      window.gtag?.("event", "conversion", {
+        send_to: "AW-18088070718/rb-ZCJXK2KMcEL6ciLFD",
+        value: 1,
+        currency: "USD",
+      });
     };
 
     const onClick = (event: MouseEvent) => {

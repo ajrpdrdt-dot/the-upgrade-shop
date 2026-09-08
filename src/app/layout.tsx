@@ -3,6 +3,7 @@ import { IBM_Plex_Mono, Outfit } from "next/font/google";
 import Script from "next/script";
 import { Footer, StickyBar } from "@/components/Footer";
 import { Header } from "@/components/Header";
+import { ChatWidget } from "@/components/ChatWidget";
 import { site } from "@/lib/site";
 import "./globals.css";
 
@@ -51,14 +52,20 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         {children}
         <Footer />
         <StickyBar />
-        {/* GoHighLevel chat widget */}
-        <Script
-          src="https://widgets.leadconnectorhq.com/loader.js"
-          data-resources-url="https://widgets.leadconnectorhq.com/chat-widget/loader.js"
-          data-widget-id="6a9a051dba70a028e7c2e8b5"
-          data-source="WEB_USER"
-          strategy="afterInteractive"
-        />
+        {/* Google tag (gtag.js) */}
+        <Script src="https://www.googletagmanager.com/gtag/js?id=G-QYPFRDJGZ6" strategy="afterInteractive" />
+        <Script id="gtag-init" strategy="afterInteractive">
+          {`
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', 'G-QYPFRDJGZ6');
+          `}
+        </Script>
+        {/* GHL form embed helper (needed on any page with a QuoteForm iframe) */}
+        <Script src="https://link.msgsndr.com/js/form_embed.js" strategy="afterInteractive" />
+        {/* GoHighLevel chat widget — only on pages without the phone/SMS-consent form */}
+        <ChatWidget />
       </body>
     </html>
   );

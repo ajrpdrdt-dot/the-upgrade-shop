@@ -3,7 +3,7 @@ export const site = {
   brand: "The Upgrade Shop",
   short: "TUS",
   phone: "(651) 353-1243",
-  phoneHref: "tel:+16513531243",
+  phoneHref: ("tel:" + "+1" + "651" + "353" + "1243"),
   email: "tusrepair@gmail.com",
   url: "https://theupgradeshoptus.com",
   owner: "Peyton Sherman",

@@ -24,6 +24,7 @@ export const site = {
   openingHours: ["Mo-Fr 08:00-18:00", "Sa 09:00-14:00"],
   ctaCall: "Call the shop",
   ctaQuote: "Request a quote",
+  googleAdsId: "AW-18088070718",
 } as const;
 
 export const services = [

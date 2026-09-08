@@ -49,22 +49,24 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="en" className={`${outfit.variable} ${ibm.variable}`}>
       <body>
-        <Header />
-        {children}
-        <Footer />
-        <StickyBar />
-        {/* Google tag (gtag.js) */}
-        <Script src="https://www.googletagmanager.com/gtag/js?id=G-QYPFRDJGZ6" strategy="afterInteractive" />
-        <Script id="gtag-init" strategy="afterInteractive">
+        <Script
+          src={`https://www.googletagmanager.com/gtag/js?id=${site.googleAdsId}`}
+          strategy="beforeInteractive"
+        />
+        <Script id="gtag-init" strategy="beforeInteractive">
           {`
             window.dataLayer = window.dataLayer || [];
             function gtag(){dataLayer.push(arguments);}
             window.gtag = window.gtag || gtag;
             gtag('js', new Date());
+            gtag('config', '${site.googleAdsId}');
             gtag('config', 'G-QYPFRDJGZ6');
-            gtag('config', 'AW-18088070718');
           `}
         </Script>
+        <Header />
+        {children}
+        <Footer />
+        <StickyBar />
         <GoogleAdsTracking />
         {/* GHL form embed helper (needed on any page with a QuoteForm iframe) */}
         <Script src="https://link.msgsndr.com/js/form_embed.js" strategy="afterInteractive" />

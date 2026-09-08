@@ -49,20 +49,19 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="en" className={`${outfit.variable} ${ibm.variable}`}>
       <body>
-        <Script
-          src={`https://www.googletagmanager.com/gtag/js?id=${site.googleAdsId}`}
-          strategy="beforeInteractive"
-        />
-        <Script id="gtag-init" strategy="beforeInteractive">
-          {`
-            window.dataLayer = window.dataLayer || [];
-            function gtag(){dataLayer.push(arguments);}
-            window.gtag = window.gtag || gtag;
-            gtag('js', new Date());
-            gtag('config', '${site.googleAdsId}');
-            gtag('config', 'G-QYPFRDJGZ6');
-          `}
-        </Script>
+        <script async src={`https://www.googletagmanager.com/gtag/js?id=${site.googleAdsId}`}></script>
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+              window.dataLayer = window.dataLayer || [];
+              function gtag(){dataLayer.push(arguments);}
+              window.gtag = window.gtag || gtag;
+              gtag('js', new Date());
+              gtag('config', '${site.googleAdsId}');
+              gtag('config', 'G-QYPFRDJGZ6');
+            `,
+          }}
+        ></script>
         <Header />
         {children}
         <Footer />

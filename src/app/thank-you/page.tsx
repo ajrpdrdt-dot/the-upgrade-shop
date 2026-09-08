@@ -20,18 +20,15 @@ export default async function ThankYouPage({ searchParams }: Props) {
   const transactionId = safeTransactionId(params.transaction_id);
 
   return (
-    <>
-      <head>
-        <script
-          dangerouslySetInnerHTML={{
-            __html: `gtag('event', 'conversion', {
+    <main className="page-hero">
+      <script
+        dangerouslySetInnerHTML={{
+          __html: `gtag('event', 'conversion', {
   'send_to': '${site.googleAdsPurchaseSendTo}',
   'transaction_id': '${transactionId}'
 });`,
-          }}
-        ></script>
-      </head>
-      <main className="page-hero">
+        }}
+      ></script>
         <div className="wrap" style={{ maxWidth: 640 }}>
           <p className="crumbs">
             <Link href="/">Homepage</Link> / Quote received
@@ -52,6 +49,5 @@ export default async function ThankYouPage({ searchParams }: Props) {
           </p>
         </div>
       </main>
-    </>
   );
 }

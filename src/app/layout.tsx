@@ -4,6 +4,7 @@ import Script from "next/script";
 import { Footer, StickyBar } from "@/components/Footer";
 import { Header } from "@/components/Header";
 import { ChatWidget } from "@/components/ChatWidget";
+import { GoogleAdsTracking } from "@/components/GoogleAdsTracking";
 import { site } from "@/lib/site";
 import "./globals.css";
 
@@ -58,10 +59,13 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           {`
             window.dataLayer = window.dataLayer || [];
             function gtag(){dataLayer.push(arguments);}
+            window.gtag = window.gtag || gtag;
             gtag('js', new Date());
             gtag('config', 'G-QYPFRDJGZ6');
+            gtag('config', 'AW-18088070718');
           `}
         </Script>
+        <GoogleAdsTracking />
         {/* GHL form embed helper (needed on any page with a QuoteForm iframe) */}
         <Script src="https://link.msgsndr.com/js/form_embed.js" strategy="afterInteractive" />
         {/* GoHighLevel chat widget — only on pages without the phone/SMS-consent form */}

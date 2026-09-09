@@ -67,13 +67,28 @@ export function GoogleAdsTracking() {
         event_source: "ghl_iframe_embed",
         transaction_id: transactionId,
       });
-      window.gtag?.("event", "conversion", {
-        send_to: site.googleAdsLeadSendTo,
-        value: 1,
-        currency: "USD",
-        transaction_id: transactionId,
-      });
-      window.location.assign(`/thank-you?transaction_id=${encodeURIComponent(transactionId)}`);
+
+      const thankYouUrl = `/thank-you?transaction_id=${encodeURIComponent(transactionId)}`;
+      let redirected = false;
+      const redirectToThankYou = () => {
+        if (redirected) return;
+        redirected = true;
+        window.location.assign(thankYouUrl);
+      };
+
+      if (window.gtag) {
+        window.gtag("event", "conversion", {
+          send_to: site.googleAdsLeadSendTo,
+          value: 1,
+          currency: "USD",
+          transaction_id: transactionId,
+          event_callback: redirectToThankYou,
+          event_timeout: 1500,
+        });
+        window.setTimeout(redirectToThankYou, 1600);
+      } else {
+        redirectToThankYou();
+      }
     };
 
     const onClick = (event: MouseEvent) => {

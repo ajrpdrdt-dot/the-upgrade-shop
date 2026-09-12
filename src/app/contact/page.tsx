@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { QuoteForm } from "@/components/QuoteForm";
+import { StructuredData } from "@/components/StructuredData";
 import { shopBuilding, site } from "@/lib/site";
 
 export const metadata: Metadata = {
@@ -9,9 +10,20 @@ export const metadata: Metadata = {
   alternates: { canonical: `${site.url}/contact` },
 };
 
+const json = JSON.stringify({
+  "@context": "https://schema.org",
+  "@type": "ContactPage",
+  "@id": `${site.url}/contact#webpage`,
+  url: `${site.url}/contact`,
+  name: "Contact",
+  isPartOf: { "@id": `${site.url}/#website` },
+  about: { "@id": `${site.url}/#shop` },
+});
+
 export default function ContactPage() {
   return (
     <main className="page-hero">
+      <StructuredData json={json} />
       <div className="wrap split">
         <div>
           <p className="crumbs">

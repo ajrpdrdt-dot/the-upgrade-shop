@@ -17,7 +17,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   if (!c) return {};
   return {
     title: `Auto repair in ${c.name}, ${c.state}`,
-    description: `Auto repair, performance upgrades, and engine rebuilds for ${c.name}, ${c.state} at TUS Shop Inc., The Upgrade Shop. ${c.drive} Call ${site.phone}.`,
+    description: `Auto repair, performance upgrades, and engine rebuilds for ${c.name}, ${c.state} at TUS Shop Inc., The Upgrade Shop. Call ${site.phone}.`,
     alternates: { canonical: `${site.url}/areas/${c.slug}` },
   };
 }

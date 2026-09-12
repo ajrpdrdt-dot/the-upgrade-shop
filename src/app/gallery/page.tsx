@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { StructuredData } from "@/components/StructuredData";
 import { galleryPhotos, site } from "@/lib/site";
 
 const featured = galleryPhotos[0];
@@ -17,9 +18,20 @@ export const metadata: Metadata = {
   },
 };
 
+const json = JSON.stringify({
+  "@context": "https://schema.org",
+  "@type": "ImageGallery",
+  "@id": `${site.url}/gallery#webpage`,
+  url: `${site.url}/gallery`,
+  name: "Gallery",
+  isPartOf: { "@id": `${site.url}/#website` },
+  about: { "@id": `${site.url}/#shop` },
+});
+
 export default function GalleryPage() {
   return (
     <main className="page-hero">
+      <StructuredData json={json} />
       <div className="wrap">
         <p className="crumbs">
           <Link href="/">Homepage</Link> / Gallery

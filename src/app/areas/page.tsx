@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { StructuredData } from "@/components/StructuredData";
 import { cities, shopBuilding, site } from "@/lib/site";
 
 export const metadata: Metadata = {
@@ -9,9 +10,26 @@ export const metadata: Metadata = {
   alternates: { canonical: `${site.url}/areas` },
 };
 
+const json = JSON.stringify({
+  "@context": "https://schema.org",
+  "@type": "WebPage",
+  "@id": `${site.url}/areas#webpage`,
+  url: `${site.url}/areas`,
+  name: "Areas we serve",
+  description:
+    "The Upgrade Shop serves Hudson, River Falls, Stillwater, Woodbury, Afton, Lakeland, Ellsworth, and Prescott from 663 Valerie Ave, Unit 123, River Falls, WI 54022.",
+  isPartOf: { "@id": `${site.url}/#website` },
+  about: {
+    "@type": "AutoRepair",
+    name: site.legalName,
+    areaServed: cities.map((c) => ({ "@type": "City", name: `${c.name}, ${c.state}` })),
+  },
+});
+
 export default function AreasPage() {
   return (
     <main className="page-hero">
+      <StructuredData json={json} />
       <div className="wrap">
         <p className="crumbs">
           <Link href="/">Homepage</Link> / Areas we serve

@@ -45,6 +45,10 @@ export function Footer() {
           ))}
         </div>
       </div>
+      <nav className="wrap legal-links" aria-label="Legal">
+        <Link href="/privacy-policy">Privacy Policy</Link>
+        <Link href="/terms-of-service">Terms of Service</Link>
+      </nav>
     </footer>
   );
 }

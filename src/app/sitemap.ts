@@ -1,5 +1,6 @@
 import type { MetadataRoute } from "next";
 import { cities, services, site } from "@/lib/site";
+import { guides } from "@/lib/guides";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const lastModified = new Date();
@@ -9,6 +10,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: `${site.url}/areas`, lastModified, changeFrequency: "monthly", priority: 0.8 },
     { url: `${site.url}/contact`, lastModified, changeFrequency: "monthly", priority: 0.6 },
     { url: `${site.url}/gallery`, lastModified, changeFrequency: "weekly", priority: 0.7 },
+    { url: `${site.url}/guides`, lastModified, changeFrequency: "weekly", priority: 0.5 },
     { url: `${site.url}/privacy-policy`, lastModified, changeFrequency: "yearly", priority: 0.2 },
     { url: `${site.url}/terms-of-service`, lastModified, changeFrequency: "yearly", priority: 0.2 },
     ...services.map((s) => ({
@@ -22,6 +24,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
       lastModified,
       changeFrequency: "monthly" as const,
       priority: 0.7,
+    })),
+    ...guides.map((g) => ({
+      url: `${site.url}/guides/${g.slug}`,
+      lastModified: new Date(g.dateModified),
+      changeFrequency: "monthly" as const,
+      priority: 0.5,
     })),
   ];
 }

@@ -31,6 +31,9 @@ export function Footer() {
             <Link href="/gallery">Gallery</Link>
           </p>
           <p>
+            <Link href="/guides">Guides</Link>
+          </p>
+          <p>
             <Link href="/contact">{site.ctaQuote}</Link>
           </p>
         </div>

@@ -61,12 +61,15 @@ export function GoogleAdsTracking() {
       const transactionId = String(
         payload.customer_id || payload.contact_id || payload.contactId || `lead-${Date.now()}`,
       );
-      record("generate_lead", {
+      const leadParams = {
         form_id: "93fCmkydw2MYvHb2D9Mc",
         form_name: "Tus Lead form",
         event_source: "ghl_iframe_embed",
         transaction_id: transactionId,
-      });
+      };
+      // lead_submit is the GA4 key event; generate_lead is kept for continuity with existing reports.
+      record("lead_submit", leadParams);
+      record("generate_lead", leadParams);
 
       const thankYouUrl = `/thank-you?transaction_id=${encodeURIComponent(transactionId)}`;
       let redirected = false;
@@ -93,6 +96,13 @@ export function GoogleAdsTracking() {
 
     const onClick = (event: MouseEvent) => {
       const target = event.target as Element | null;
+      const smsLink = target?.closest<HTMLAnchorElement>('a[href^="sms:"]');
+      if (smsLink) {
+        // Secondary engagement signal only. Do not mark sms_click as a GA4 key event.
+        record("sms_click", { event_source: "website", page_path: window.location.pathname });
+        return;
+      }
+
       const phoneLink = target?.closest<HTMLAnchorElement>('a[href^="tel:"]');
       if (!phoneLink) return;
 

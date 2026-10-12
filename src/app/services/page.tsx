@@ -2,11 +2,13 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { StructuredData } from "@/components/StructuredData";
 import { services, site } from "@/lib/site";
+import { ShopImg } from "@/components/ShopImg";
+import { makePages } from "@/lib/page-sections";
 
 export const metadata: Metadata = {
-  title: "Services",
+  title: { absolute: "BMW, Audi & Performance Car Services | The Upgrade Shop" },
   description:
-    "Performance upgrades, general repair, and engine swaps and rebuilds at TUS Shop Inc., The Upgrade Shop in River Falls, WI, serving Hudson and the St. Croix valley.",
+    "Performance upgrades, suspension, engine swaps and general repair for BMW, Audi, Mercedes and other high-end cars. Get a clear quote before work starts.",
   alternates: { canonical: `${site.url}/services` },
 };
 
@@ -51,10 +53,25 @@ export default function ServicesIndex() {
                   {s.h1}
                 </Link>
               </div>
-              <img src={s.image} alt={s.imageAlt} />
+              <ShopImg src={s.image} alt={s.imageAlt} />
             </div>
           </article>
         ))}
+        <article className="chapter" style={{ paddingLeft: 0, paddingRight: 0 }}>
+          <h2>Repair by make</h2>
+          <p className="lede">
+            BMW is most of the work on this floor. Audi and Mercedes-Benz owners get the same diagnosis-first approach.
+          </p>
+          <p>
+            {makePages.map((m) => (
+              <span key={m.slug}>
+                <Link className="btn-ghost" href={`/${m.slug}`} style={{ marginRight: 18 }}>
+                  {m.make} repair
+                </Link>
+              </span>
+            ))}
+          </p>
+        </article>
       </div>
     </main>
   );

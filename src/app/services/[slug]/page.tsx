@@ -4,6 +4,8 @@ import { notFound } from "next/navigation";
 import { QuoteForm } from "@/components/QuoteForm";
 import { StructuredData } from "@/components/StructuredData";
 import { cities, services, site } from "@/lib/site";
+import { ShopImg } from "@/components/ShopImg";
+import { makePages, serviceSections, sharedSections } from "@/lib/page-sections";
 
 type Props = { params: Promise<{ slug: string }> };
 
@@ -16,8 +18,8 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const s = services.find((x) => x.slug === slug);
   if (!s) return {};
   return {
-    title: s.title,
-    description: `${s.title} in River Falls and Hudson, WI. ${s.summary} Call ${site.phone}.`,
+    title: { absolute: s.seoTitle },
+    description: s.metaDescription,
     alternates: { canonical: `${site.url}/services/${s.slug}` },
     openGraph: {
       title: `${s.title} | The Upgrade Shop`,
@@ -84,7 +86,7 @@ export default async function ServicePage({ params }: Props) {
       </div>
 
       <div className="wrap split">
-        <img src={s.image} alt={s.imageAlt} />
+        <ShopImg src={s.image} alt={s.imageAlt} priority />
         <div>
           <h2>When you need this work</h2>
           <ul className="list">
@@ -102,7 +104,7 @@ export default async function ServicePage({ params }: Props) {
           <div className="work-grid">
             {s.gallery.map((p) => (
               <figure key={p.src}>
-                <img src={p.src} alt={p.alt} />
+                <ShopImg src={p.src} alt={p.alt} sizes="(max-width: 900px) 50vw, 25vw" />
               </figure>
             ))}
           </div>
@@ -123,6 +125,26 @@ export default async function ServicePage({ params }: Props) {
           </ul>
         </div>
       </section>
+
+      {[...(serviceSections[s.slug] ?? []), ...sharedSections].map((sec) => (
+        <section className="chapter" key={sec.h2}>
+          <div className="wrap">
+            <h2>{sec.h2}</h2>
+            {sec.paragraphs.map((p) => (
+              <p className="lede" key={p.slice(0, 40)}>
+                {p}
+              </p>
+            ))}
+            {sec.bullets ? (
+              <ul className="list">
+                {sec.bullets.map((b) => (
+                  <li key={b}>{b}</li>
+                ))}
+              </ul>
+            ) : null}
+          </div>
+        </section>
+      ))}
 
       <section className="chapter">
         <div className="wrap">
@@ -159,6 +181,15 @@ export default async function ServicePage({ params }: Props) {
               <span key={x.slug}>
                 <Link className="btn-ghost" href={`/services/${x.slug}`} style={{ marginRight: 18 }}>
                   {x.title}
+                </Link>
+              </span>
+            ))}
+          </p>
+          <p style={{ marginTop: 24 }}>
+            {makePages.map((m) => (
+              <span key={m.slug}>
+                <Link href={`/${m.slug}`} style={{ marginRight: 16 }}>
+                  {m.make} repair
                 </Link>
               </span>
             ))}

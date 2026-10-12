@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { StructuredData } from "@/components/StructuredData";
 import { cities, shopBuilding, site } from "@/lib/site";
+import { ShopImg } from "@/components/ShopImg";
 
 export const metadata: Metadata = {
   title: "Areas we serve",
@@ -40,7 +41,7 @@ export default function AreasPage() {
           stays {site.nap}. That string is the one we use everywhere.
         </p>
         <div className="split" style={{ marginBottom: 48 }}>
-          <img src={shopBuilding.src} alt={shopBuilding.alt} />
+          <ShopImg src={shopBuilding.src} alt={shopBuilding.alt} />
           <div>
             <p className="mono">Unit 123</p>
             <h2>The bay you actually drive to</h2>

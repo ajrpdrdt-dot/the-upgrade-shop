@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { cities, services, site } from "@/lib/site";
+import { makePages } from "@/lib/page-sections";
 
 export function Footer() {
   return (
@@ -25,6 +26,11 @@ export function Footer() {
           {services.map((s) => (
             <p key={s.slug}>
               <Link href={`/services/${s.slug}`}>{s.nav}</Link>
+            </p>
+          ))}
+          {makePages.map((m) => (
+            <p key={m.slug}>
+              <Link href={`/${m.slug}`}>{m.make} repair</Link>
             </p>
           ))}
           <p>
@@ -61,6 +67,9 @@ export function StickyBar() {
     <div className="sticky-bar">
       <a className="call" href={site.phoneHref}>
         {site.ctaCall}
+      </a>
+      <a className="text" href={site.smsHref}>
+        {site.ctaText}
       </a>
       <a href="/contact">{site.ctaQuote}</a>
     </div>

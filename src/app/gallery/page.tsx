@@ -2,13 +2,14 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { StructuredData } from "@/components/StructuredData";
 import { galleryPhotos, site } from "@/lib/site";
+import { ShopImg } from "@/components/ShopImg";
 
 const featured = galleryPhotos[0];
 
 export const metadata: Metadata = {
-  title: "Gallery",
+  title: { absolute: "BMW & Performance Build Gallery | The Upgrade Shop" },
   description:
-    "BMW work photos from TUS Shop Inc., The Upgrade Shop at 663 Valerie Ave, Unit 123, River Falls, WI 54022. M cars, 3 Series, and X5 jobs from this floor.",
+    "Real BMW M3, M4, 3 Series and X5 M work from The Upgrade Shop in River Falls, WI: suspension, exhaust, engine and repair jobs. No stock photos.",
   alternates: { canonical: `${site.url}/gallery` },
   openGraph: {
     title: "Gallery | The Upgrade Shop",
@@ -50,13 +51,11 @@ export default function GalleryPage() {
           <div className="gallery-board">
             {galleryPhotos.map((p, i) => (
               <figure key={p.src} className={i === 0 ? "gallery-lead" : undefined}>
-                <img
+                <ShopImg
                   src={p.src}
                   alt={p.alt}
-                  width={2400}
-                  height={3200}
-                  loading={i < 2 ? "eager" : "lazy"}
-                  decoding="async"
+                  priority={i < 2}
+                  sizes="(max-width: 900px) 100vw, 33vw"
                 />
               </figure>
             ))}

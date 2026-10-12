@@ -24,11 +24,11 @@ const ibm = IBM_Plex_Mono({
 export const metadata: Metadata = {
   metadataBase: new URL(site.url),
   title: {
-    default: "The Upgrade Shop | Performance and engine work in River Falls",
+    default: "European & Performance Auto Repair | River Falls & Hudson",
     template: "%s | The Upgrade Shop",
   },
   description:
-    "TUS Shop Inc. is The Upgrade Shop in River Falls, WI. Performance upgrades, general repair, and engine swaps for European and high-end cars serving Hudson, Stillwater, and the St. Croix valley.",
+    "European and high-end car repair, performance upgrades and engine swaps in River Falls and Hudson, WI. Dealer-level diagnostics without dealer wait.",
   authors: [{ name: site.legalName }],
   robots: { index: true, follow: true },
   openGraph: {

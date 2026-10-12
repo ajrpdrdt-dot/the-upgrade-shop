@@ -368,7 +368,7 @@ button, input, select, textarea { font: inherit; color: inherit; }
   bottom: 0;
   z-index: 50;
   display: none;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 1fr 1fr 1fr;
   background: #101012;
   border-top: 1px solid var(--line);
 }
@@ -377,6 +377,7 @@ button, input, select, textarea { font: inherit; color: inherit; }
   padding: 14px 8px;
 }
 .sticky-bar a.call { background: var(--red); color: #fff; }
+.sticky-bar a.text { border-left: 1px solid var(--line); border-right: 1px solid var(--line); }
 
 .page-hero {
   padding: 72px 0 28px;

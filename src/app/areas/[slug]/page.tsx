@@ -4,6 +4,7 @@ import { notFound } from "next/navigation";
 import { QuoteForm } from "@/components/QuoteForm";
 import { StructuredData } from "@/components/StructuredData";
 import { cities, services, shopBuilding, site } from "@/lib/site";
+import { ShopImg } from "@/components/ShopImg";
 
 type Props = { params: Promise<{ slug: string }> };
 
@@ -43,9 +44,7 @@ export default async function CityPage({ params }: Props) {
         <p className="crumbs">
           <Link href="/">Homepage</Link> / <Link href="/areas">Areas we serve</Link> / {c.name}
         </p>
-        <h1>
-          Auto repair in {c.name}, {c.state}
-        </h1>
+        <h1>{`Auto repair in ${c.name}, ${c.state}`}</h1>
         <p className="lede">{c.pitch}</p>
         <p className="lede">{c.drive} The shop is {site.nap}.</p>
         <div className="cta-row" style={{ justifyContent: "flex-start", marginBottom: 28 }}>
@@ -77,7 +76,7 @@ export default async function CityPage({ params }: Props) {
 
       <section className="chapter">
         <div className="wrap split">
-          <img src={shopBuilding.src} alt={shopBuilding.alt} />
+          <ShopImg src={shopBuilding.src} alt={shopBuilding.alt} />
           <div>
             <h2>Find Unit 123 from {c.name}</h2>
             <p className="lede">

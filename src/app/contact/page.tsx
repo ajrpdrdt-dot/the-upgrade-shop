@@ -3,10 +3,12 @@ import Link from "next/link";
 import { QuoteForm } from "@/components/QuoteForm";
 import { StructuredData } from "@/components/StructuredData";
 import { shopBuilding, site } from "@/lib/site";
+import { ShopImg } from "@/components/ShopImg";
 
 export const metadata: Metadata = {
-  title: "Contact",
-  description: `Call The Upgrade Shop at ${site.phone} or request a quote. ${site.nap}. Monday to Friday 8 to 6, Saturday 9 to 2.`,
+  title: { absolute: "Contact The Upgrade Shop | Auto Repair in River Falls, WI" },
+  description:
+    "Call or request a quote from The Upgrade Shop in River Falls, WI. European and performance car repair, upgrades and diagnostics. Quick replies.",
   alternates: { canonical: `${site.url}/contact` },
 };
 
@@ -49,7 +51,7 @@ export default function ContactPage() {
       </div>
       <section className="chapter">
         <div className="wrap split">
-          <img src={shopBuilding.src} alt={shopBuilding.alt} />
+          <ShopImg src={shopBuilding.src} alt={shopBuilding.alt} />
           <div>
             <h2>Walk in at Unit 123</h2>
             <p className="lede">

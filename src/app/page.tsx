@@ -4,14 +4,16 @@ import { QuoteForm } from "@/components/QuoteForm";
 import { ScrollHero } from "@/components/ScrollHero";
 import { StructuredData } from "@/components/StructuredData";
 import { cities, homeFaqs, services, shopPhotos, site } from "@/lib/site";
+import { ShopImg } from "@/components/ShopImg";
+import { makePages } from "@/lib/page-sections";
 
 export const metadata: Metadata = {
-  title: "The Upgrade Shop | Performance and engine work in River Falls",
+  title: { absolute: "European & Performance Auto Repair | River Falls & Hudson" },
   description:
-    "TUS Shop Inc. is The Upgrade Shop at 663 Valerie Ave, Unit 123, River Falls, WI 54022. Performance upgrades, general repair, and engine rebuilds for Hudson, River Falls, Stillwater, and nearby cities.",
+    "European and high-end car repair, performance upgrades and engine swaps in River Falls and Hudson, WI. Dealer-level diagnostics without dealer wait.",
   alternates: { canonical: site.url },
   openGraph: {
-    title: "The Upgrade Shop | Performance and engine work in River Falls",
+    title: "European & Performance Auto Repair | River Falls & Hudson",
     description: "Luxury-grade repair and performance for European and high-end cars between Hudson and River Falls.",
     url: site.url,
     images: ["/assets/og.webp"],
@@ -106,7 +108,7 @@ export default function HomePage() {
               Areas we serve
             </a>
           </div>
-          <img src="/shop/bmw-m4-front.webp?v=hd" alt="White BMW M4 at The Upgrade Shop in River Falls" />
+          <ShopImg src="/shop/bmw-m4-front.webp" alt="White BMW M4 at The Upgrade Shop in River Falls" />
         </div>
       </section>
 
@@ -118,9 +120,9 @@ export default function HomePage() {
             the morning and a turbo install in the afternoon.
           </p>
         </div>
-        {services.map((s, i) => (
+        {services.slice(0, 3).map((s, i) => (
           <div className="wrap split" key={s.slug} style={{ marginTop: i === 0 ? 0 : 56 }}>
-            {i % 2 === 1 ? <img src={s.image} alt={s.imageAlt} /> : null}
+            {i % 2 === 1 ? <ShopImg src={s.image} alt={s.imageAlt} /> : null}
             <div>
               <h2>{s.title}</h2>
               <p className="lede">{s.summary}</p>
@@ -135,9 +137,28 @@ export default function HomePage() {
                 </Link>
               </p>
             </div>
-            {i % 2 === 0 ? <img src={s.image} alt={s.imageAlt} /> : null}
+            {i % 2 === 0 ? <ShopImg src={s.image} alt={s.imageAlt} /> : null}
           </div>
         ))}
+        <div className="wrap" style={{ marginTop: 56 }}>
+          <h2>Also on the bench</h2>
+          <p>
+            {services.slice(3).map((s) => (
+              <span key={s.slug}>
+                <Link className="btn-ghost" href={`/services/${s.slug}`} style={{ marginRight: 18 }}>
+                  {s.title}
+                </Link>
+              </span>
+            ))}
+            {makePages.map((m) => (
+              <span key={m.slug}>
+                <Link className="btn-ghost" href={`/${m.slug}`} style={{ marginRight: 18 }}>
+                  {m.make} repair
+                </Link>
+              </span>
+            ))}
+          </p>
+        </div>
       </section>
 
       <section className="chapter">
@@ -152,7 +173,7 @@ export default function HomePage() {
             {shopPhotos.map((p) => (
               <figure key={p.src}>
                 <Link href="/gallery">
-                  <img src={p.src} alt={p.alt} />
+                  <ShopImg src={p.src} alt={p.alt} sizes="(max-width: 900px) 50vw, 33vw" />
                 </Link>
               </figure>
             ))}
